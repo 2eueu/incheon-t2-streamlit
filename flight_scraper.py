@@ -1,51 +1,59 @@
 import requests
 import json
 from datetime import datetime
+import os
 
 def get_flight_data():
-    # 오늘 날짜를 'YYYYMMDD' 형식으로 설정
     today = datetime.now().strftime("%Y%m%d")
-    print(f"📅 오늘 날짜: {today}")
+    print(f"📅 조회일자: {today}")
 
-    # API 요청에 사용할 파라미터 설정
-    payload = {
-        "schDate": today,         # 조회할 날짜
-        "schDeptCityCode": "",    # 출발 도시 코드 (필요 시 설정)
-        "schArrvCityCode": "",    # 도착 도시 코드 (필요 시 설정)
-        "schAirCode": "",         # 항공사 코드 (필요 시 설정)
-        "schFlightNum": "",       # 항공편 번호 (필요 시 설정)
-        "schTime": "0000",        # 조회 시작 시간 (HHMM 형식)
-        "schIoType": "O",         # 'O'는 출발편, 'I'는 도착편
-        "schTerminalCode": "T2",  # 터미널 코드 ('T1', 'T2' 등)
-        "page": "1",
-        "pageSize": "1000"
+    url = "http://apis.data.go.kr/B551177/StatusOfPassengerFlightsOdp/getPassengerDeparturesOdp"
+    service_key = "kGGoic28kuWkdeS3FBZakDLtFkduZJF+Hxk4EOK0r6YGjW6aTz8tiDePFey1JaZwdXrvUrpe8vR3ZRCUJaAZVw=="
+
+    params = {
+        "serviceKey": service_key,
+        "from_time": "0000",
+        "to_time": "2400",
+        "lang": "K",
+        "type": "json",
+        "pageNo": "1",
+        "numOfRows": "1000"
     }
 
-    # HTTP 헤더 설정
-    headers = {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": "Mozilla/5.0"
-    }
+    response = requests.get(url, params=params)
+    print(f"🔍 응답 코드: {response.status_code}")
 
-    # API 엔드포인트 URL
-    url = "https://www.airport.kr/dep/ap_ko/getDepPasSchList.do"
-
-    # POST 요청 보내기
-    response = requests.post(url, data=payload, headers=headers)
-
-    # 응답 상태 확인
-    if response.status_code == 200:
+    try:
         data = response.json()
-        flights = data.get("list", [])
-        print(f"✅ 수신된 항공편 수: {len(flights)}")
+        all_flights = data.get("response", {}).get("body", {}).get("items", [])
 
-        # 결과를 JSON 파일로 저장
+        # ✅ T2 + 공동운항 정리
+        filtered = []
+        seen_flights = set()
+
+        for flight in all_flights:
+            if flight.get("terminalId") != "P02":
+                continue  # T2 아니면 제외
+            if flight.get("codeshare") == "Slave":
+                continue  # 공동운항 종속편 제외
+            flight_id = flight.get("flightId")
+            if flight_id and flight_id not in seen_flights:
+                filtered.append(flight)
+                seen_flights.add(flight_id)
+
+        print(f"✅ 필터링 후 항공편 수: {len(filtered)}")
+
+        # 폴더 없으면 생성
+        os.makedirs("data", exist_ok=True)
         with open("data/flights.json", "w", encoding="utf-8") as f:
-            json.dump(flights, f, ensure_ascii=False, indent=2)
+            json.dump(filtered, f, ensure_ascii=False, indent=2)
 
-        print("✅ 데이터가 'data/flights.json'에 저장되었습니다.")
-    else:
-        print(f"❌ 요청 실패. 상태 코드: {response.status_code}")
+        print("📁 'data/flights.json' 저장 완료!")
+
+    except Exception as e:
+        print("❌ JSON 디코딩 실패:", e)
+        print("📝 원본 응답:")
+        print(response.text[:1000])
 
 if __name__ == "__main__":
     get_flight_data()
