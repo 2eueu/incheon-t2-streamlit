@@ -4,7 +4,7 @@ import requests
 import json
 from datetime import datetime
 
-@st.cache_data(ttl=60*60)  # 1시간마다 새로고침
+#@st.cache_data(ttl=60*60)  # 1시간마다 새로고침
 def get_flights():
     url = "http://apis.data.go.kr/B551177/StatusOfPassengerFlightsOdp/getPassengerDeparturesOdp"
     service_key = "kGGoic28kuWkdeS3FBZakDLtFkduZJF+Hxk4EOK0r6YGjW6aTz8tiDePFey1JaZwdXrvUrpe8vR3ZRCUJaAZVw=="
