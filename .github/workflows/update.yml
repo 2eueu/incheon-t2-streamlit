@@ -2,8 +2,11 @@ name: Update Flights JSON Daily
 
 on:
   schedule:
-    - cron: "0 15 * * *"  # 매일 자정 UTC (한국시간 9AM)
+    - cron: "0 15 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write  # ✅ 이거 추가!!
 
 jobs:
   update-data:
@@ -19,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install selenium webdriver-manager beautifulsoup4
+          pip install requests
 
       - name: Run scraper and save JSON
         run: |
