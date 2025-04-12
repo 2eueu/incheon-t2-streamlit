@@ -43,6 +43,10 @@ def get_flight_data():
     Select(driver.find_element(By.ID, "toTime")).select_by_visible_text("23:59")
     time.sleep(10)
 
+    # 🔍 HTML 일부 출력해서 렌더링 확인!
+    print("📄 페이지 일부 HTML:")
+    print(driver.page_source[:1500])
+    
     # ✅ 안정적인 버튼 클릭 (수정 포인트!)
     wait = WebDriverWait(driver, 20)
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "button.btn-search")))
