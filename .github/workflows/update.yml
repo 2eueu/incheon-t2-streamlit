@@ -30,13 +30,13 @@ jobs:
       - name: Run scraper and save JSON
         run: |
           python flight_scraper.py
-      
+        
       - name: Commit and push if changes exist
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       
-          git pull origin main --rebase  # ✅ 먼저 최신 내용과 병합
+          git pull origin main --rebase  # 먼저 업데이트 받고
       
           git add data/flights.json
           if git diff --cached --quiet; then
@@ -45,3 +45,4 @@ jobs:
             git commit -m "🔄 Auto update flight data"
             git push
           fi
+
