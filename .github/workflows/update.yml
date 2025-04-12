@@ -40,3 +40,4 @@ jobs:
             git commit -m "🔄 Auto update flight data"
             git push
           fi
+
