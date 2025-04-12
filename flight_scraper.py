@@ -1,7 +1,8 @@
+# flight_scraper.py
 import requests
 import json
 from datetime import datetime
-import os  # ⬅️ 이 줄이 추가되어야 함
+import os
 
 def get_flight_data():
     today = datetime.now().strftime("%Y%m%d")
@@ -24,14 +25,13 @@ def get_flight_data():
     try:
         data = response.json()
         print("✅ 응답 JSON 일부:")
-        print(json.dumps(data, indent=2, ensure_ascii=False)[:1000])
+        print(json.dumps(data, indent=2, ensure_ascii=False)[:500])
     except Exception as e:
         print("❌ JSON 디코딩 실패:", e)
         print("📝 원본 응답 내용:")
-        print(response.text[:1000])
+        print(response.text[:500])
         return
 
-    # 결과 필터링: 제2터미널(T2), codeshare != Slave
     flights = data.get("response", {}).get("body", {}).get("items", [])
     filtered = [
         flight for flight in flights
@@ -39,13 +39,13 @@ def get_flight_data():
     ]
     print(f"✈️ T2 & 단독 항공편 수: {len(filtered)}")
 
-    # ✅ 폴더 없으면 생성
-    os.makedirs("data", exist_ok=True)
-
-    # ✅ JSON 저장
-    with open("data/flights.json", "w", encoding="utf-8") as f:
-        json.dump(filtered, f, ensure_ascii=False, indent=2)
-    print("✅ 'data/flights.json'에 저장 완료")
+    if filtered:
+        os.makedirs("data", exist_ok=True)
+        with open("data/flights.json", "w", encoding="utf-8") as f:
+            json.dump(filtered, f, ensure_ascii=False, indent=2)
+        print("✅ 'data/flights.json'에 저장 완료")
+    else:
+        print("⚠️ 저장할 데이터가 없어 flights.json 생략")
 
 if __name__ == "__main__":
     get_flight_data()
