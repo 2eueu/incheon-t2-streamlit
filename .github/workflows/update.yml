@@ -2,7 +2,7 @@ name: Update Flights JSON Daily
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 매일 자정 UTC (한국시간 9AM)
+    - cron: "0 15 * * *"  # 매일 자정 UTC (한국시간 9AM)
   workflow_dispatch:
 
 jobs:
