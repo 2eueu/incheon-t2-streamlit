@@ -1,6 +1,7 @@
 import requests
 import json
 from datetime import datetime
+import os  # ⬅️ 이 줄이 추가되어야 함
 
 def get_flight_data():
     today = datetime.now().strftime("%Y%m%d")
@@ -38,6 +39,10 @@ def get_flight_data():
     ]
     print(f"✈️ T2 & 단독 항공편 수: {len(filtered)}")
 
+    # ✅ 폴더 없으면 생성
+    os.makedirs("data", exist_ok=True)
+
+    # ✅ JSON 저장
     with open("data/flights.json", "w", encoding="utf-8") as f:
         json.dump(filtered, f, ensure_ascii=False, indent=2)
     print("✅ 'data/flights.json'에 저장 완료")
