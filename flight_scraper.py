@@ -41,7 +41,7 @@ def get_flight_data():
     Select(driver.find_element(By.ID, "termId")).select_by_visible_text("T2")
     Select(driver.find_element(By.ID, "fromTime")).select_by_visible_text("00:00")
     Select(driver.find_element(By.ID, "toTime")).select_by_visible_text("23:59")
-    time.sleep(1)
+    time.sleep(10)
 
     # ✅ 안정적인 버튼 클릭 (수정 포인트!)
     wait = WebDriverWait(driver, 20)
