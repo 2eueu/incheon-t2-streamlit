@@ -35,11 +35,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+          git pull origin main --rebase  # ✅ 먼저 최신 내용과 병합
+      
           git add data/flights.json
           if git diff --cached --quiet; then
             echo "✅ No changes to commit"
           else
             git commit -m "🔄 Auto update flight data"
-            git pull --rebase origin main
             git push
           fi
