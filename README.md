@@ -55,6 +55,11 @@
 - Endpoint: `getPassengerDeparturesOdp`
 
 ---
+## 🔗 Related Work
+
+- [flightboard-t2](https://github.com/2eueu/flightboard-t2)
+
+---
 
 ## 🙋‍♀️ Developer
 
