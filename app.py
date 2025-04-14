@@ -66,15 +66,6 @@ else:
 st.title("🛫 인천공항 T2 실시간 출발편 대시보드")
 st.caption(f"📅 {kst_now.strftime('%Y년 %m월 %d일 %H:%M')} 기준")
 
-# ✅ 요약 정보
-st.metric(label="출발 항공편 수", value=f"{len(df)}편")
-
-# ✅ 항공편 목록 테이블
-st.dataframe(df, use_container_width=True)
-
-if df.empty:
-    st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
-
 st.markdown("""
 <div style='
     background: linear-gradient(to right, #ffe6f0, #f0f8ff);
@@ -92,4 +83,15 @@ st.markdown("""
     '>💘 정선아 #씹덕이어도 좋아할게 💘</h3>
 </div>
 """, unsafe_allow_html=True)
+
+
+# ✅ 요약 정보
+st.metric(label="출발 항공편 수", value=f"{len(df)}편")
+
+# ✅ 항공편 목록 테이블
+st.dataframe(df, use_container_width=True)
+
+if df.empty:
+    st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
+
 
