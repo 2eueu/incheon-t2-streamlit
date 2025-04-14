@@ -80,21 +80,21 @@ st.markdown("""
     .scrolling-love-container {
         width: 100%;
         overflow: hidden;
-        background: linear-gradient(90deg, #fefcea 0%, #f1daff 100%);
-        padding: 14px 0;
+        background: linear-gradient(270deg, #ffe6f0, #f0f8ff);
+        padding: 18px 0;
         margin-top: 60px;
-        border-top: 2px solid #fff;
-        border-bottom: 2px solid #fff;
+        border-top: 2px solid #ffffff33;
+        border-bottom: 2px solid #ffffff33;
     }
 
     .scrolling-love-text {
-        font-family: 'sans-serif';
         display: inline-block;
         white-space: nowrap;
-        animation: scroll-left 18s linear infinite;
-        font-size: 22px;
-        font-weight: bold;
-        color: #000000;  /* 완전 검정으로 텍스트 강조 */
+        animation: scroll-left 12s linear infinite;
+        font-size: 28px;
+        font-weight: 900;
+        color: #ff2e63;
+        text-shadow: 1px 1px 2px #ffffffaa;
     }
 
     @keyframes scroll-left {
@@ -105,7 +105,7 @@ st.markdown("""
 
     <div class="scrolling-love-container">
         <div class="scrolling-love-text">
-            💌 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💌 정선아 #씹덕이어도 좋아할게 💘 
+            💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 
         </div>
     </div>
 """, unsafe_allow_html=True)
