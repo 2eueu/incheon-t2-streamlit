@@ -74,3 +74,6 @@ st.dataframe(df, use_container_width=True)
 
 if df.empty:
     st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
+
+st.image("assets/ha.png", width=200, caption="정선자기")
+
