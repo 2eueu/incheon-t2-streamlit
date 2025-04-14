@@ -76,39 +76,6 @@ if df.empty:
     st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
 
 
-st.markdown("""
-    <style>
-    .scrolling-love-container {
-        width: 100%;
-        overflow: hidden;
-        background: linear-gradient(90deg, #fefcea 0%, #f1daff 100%);
-        padding: 12px 0;
-        margin-top: 60px;
-        border-top: 2px solid #ccc;
-        border-bottom: 2px solid #ccc;
-    }
-
-    .scrolling-love-text {
-        font-family: sans-serif;
-        display: inline-block;
-        white-space: nowrap;
-        animation: scroll-left 18s linear infinite;
-        font-size: 22px;
-        font-weight: 700;
-        color: #ffffff;
-    }
-
-    @keyframes scroll-left {
-        0%   { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
-    }
-    </style>
-
-    <div class="scrolling-love-container">
-        <div class="scrolling-love-text">
-            💌 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💌 정선아 #씹덕이어도 좋아할게 💘 
-        </div>
-    </div>
 """, unsafe_allow_html=True)
 
 
