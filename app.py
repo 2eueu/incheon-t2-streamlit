@@ -66,23 +66,6 @@ else:
 st.title("🛫 인천공항 T2 실시간 출발편 대시보드")
 st.caption(f"📅 {kst_now.strftime('%Y년 %m월 %d일 %H:%M')} 기준")
 
-st.markdown("""
-<div style='
-    background: linear-gradient(to right, #ffe6f0, #f0f8ff);
-    padding: 20px;
-    margin-top: 60px;
-    border-radius: 16px;
-    border: 2px solid #ffffff33;
-    text-align: center;
-'>
-    <h3 style='
-        font-size: 24px;
-        font-weight: 800;
-        color: #ff2e63;
-        text-shadow: 1px 1px 2px #fff;
-    '>💘 정선아 #씹덕이어도 좋아할게 💘</h3>
-</div>
-""", unsafe_allow_html=True)
 
 
 # ✅ 요약 정보
