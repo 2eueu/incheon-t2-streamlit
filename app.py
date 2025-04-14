@@ -75,39 +75,21 @@ st.dataframe(df, use_container_width=True)
 if df.empty:
     st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
 
-import streamlit.components.v1 as components
-
-components.html("""
-    <style>
-    .scrolling-love-container {
-        width: 100%;
-        overflow: hidden;
-        background: linear-gradient(270deg, #ffe6f0, #f0f8ff);
-        padding: 18px 0;
-        margin-top: 60px;
-        border-top: 2px solid #ffffff33;
-        border-bottom: 2px solid #ffffff33;
-    }
-
-    .scrolling-love-text {
-        display: inline-block;
-        white-space: nowrap;
-        animation: scroll-left 12s linear infinite;
-        font-size: 28px;
-        font-weight: 900;
+st.markdown("""
+<div style='
+    background: linear-gradient(to right, #ffe6f0, #f0f8ff);
+    padding: 20px;
+    margin-top: 60px;
+    border-radius: 16px;
+    border: 2px solid #ffffff33;
+    text-align: center;
+'>
+    <h3 style='
+        font-size: 24px;
+        font-weight: 800;
         color: #ff2e63;
-        text-shadow: 1px 1px 2px #ffffffaa;
-    }
+        text-shadow: 1px 1px 2px #fff;
+    '>💘 정선아 #씹덕이어도 좋아할게 💘</h3>
+</div>
+""", unsafe_allow_html=True)
 
-    @keyframes scroll-left {
-        0%   { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
-    }
-    </style>
-
-    <div class="scrolling-love-container">
-        <div class="scrolling-love-text">
-            💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 
-        </div>
-    </div>
-""", height=80)
