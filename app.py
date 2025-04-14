@@ -75,7 +75,9 @@ st.dataframe(df, use_container_width=True)
 if df.empty:
     st.info("✉️ 현재 항공편 정보가 없습니다. 잠시 후 다시 시도해 주세요.")
 
-st.markdown("""
+import streamlit.components.v1 as components
+
+components.html("""
     <style>
     .scrolling-love-container {
         width: 100%;
@@ -108,6 +110,4 @@ st.markdown("""
             💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 정선아 #씹덕이어도 좋아할게 💘 
         </div>
     </div>
-""", unsafe_allow_html=True)
-
-
+""", height=80)
